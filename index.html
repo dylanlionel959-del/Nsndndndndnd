@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxr3 GDPS Links</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        gd: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        gdYellow: '#FFD700',
+                        gdGreen: '#20E070',
+                        gdCyan: '#00F0FF',
+                        gdPurple: '#A020F0',
+                        gdPink: '#FF2A85',
+                        gdDark: '#0B0E17',
+                        gdCard: 'rgba(18, 24, 38, 0.85)',
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2.5s infinite ease-in-out',
+                        'float': 'float 4s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(0, 240, 255, 0.3)' },
+                            '50%': { boxShadow: '0 0 30px rgba(0, 240, 255, 0.7)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom GD styled scrollbars and glowing borders */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0e17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+
+        .gd-glow-green:hover {
+            box-shadow: 0 0 20px rgba(32, 224, 112, 0.4);
+        }
+        .gd-glow-cyan:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        .gd-glow-purple:hover {
+            box-shadow: 0 0 20px rgba(160, 32, 240, 0.4);
+        }
+        .gd-glow-pink:hover {
+            box-shadow: 0 0 20px rgba(255, 42, 133, 0.4);
+        }
+
+        /* Glassmorphism backdrop */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gdDark text-slate-100 min-h-screen relative font-sans flex flex-col items-center justify-between overflow-x-hidden selection:bg-gdCyan selection:text-black">
+
+    <!-- Interactive Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Hidden input helper for reliable iFrame copying -->
+    <input type="text" id="copy-helper" class="sr-only" aria-hidden="true">
+
+    <div class="relative z-10 w-full max-w-4xl px-4 py-8 md:py-12 flex flex-col items-center space-y-8">
+
+        <!-- Header / GD Logo Banner -->
+        <header class="w-full text-center flex flex-col items-center space-y-4">
+            <!-- Server Icon Badge -->
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-gdCyan via-gdGreen to-gdPurple rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse-glow"></div>
+                <div class="relative w-24 h-24 md:w-28 md:h-28 bg-slate-900 rounded-2xl p-2 flex items-center justify-center border border-slate-700 shadow-2xl overflow-hidden">
+                    <img src="https://mr3gdps1938.ps.fhgdps.com/assets/pageicon.png" 
+                         alt="Maxr3 GDPS Logo" 
+                         class="w-full h-full object-contain rounded-xl transform group-hover:scale-110 transition-transform duration-300 drop-shadow-md"
+                         onerror="this.onerror=null; this.src='https://placehold.co/120x120/0b0e17/00f0ff?text=Maxr3+GDPS';">
+                </div>
+            </div>
+
+            <!-- Server Title -->
+            <div class="space-y-2">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs text-gdGreen font-semibold tracking-wide uppercase">
+                    <span class="w-2 h-2 rounded-full bg-gdGreen animate-ping"></span>
+                    <span>GDPS 2.2 Server Hub</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold font-gd tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-gdCyan via-white to-gdGreen drop-shadow-md">
+                    Maxr3 GDPS Links
+                </h1>
+            </div>
+
+            <!-- Intro Description -->
+            <p class="max-w-2xl text-slate-300 text-sm md:text-base leading-relaxed px-4 py-2 glass-panel rounded-2xl shadow-lg border border-slate-800">
+                Welcome to the ultimate Geometry Dash Private Server! Download the game, browse levels, compete with the community, and climb the statistics leaderboard.
+            </p>
+        </header>
+
+        <!-- Search & Filter Controls -->
+        <section class="w-full space-y-4">
+            <div class="relative w-full">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="link-search" placeholder="Search links or commands (e.g., download, forum, browser)..." 
+                    class="w-full pl-11 pr-10 py-3 rounded-xl bg-slate-900/90 border border-slate-700/70 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-gdCyan focus:ring-2 focus:ring-gdCyan/30 transition shadow-inner">
+                <button id="clear-search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 text-sm p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Filter Category Buttons -->
+            <div class="flex flex-wrap gap-2 justify-center" id="category-filters">
+                <button data-filter="all" class="filter-btn active px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition bg-gdCyan text-slate-950 shadow-md">
+                    <i class="fa-solid fa-grid-2 mr-1.5"></i>All Links
+                </button>
+                <button data-filter="popular" class="filter-btn px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition bg-slate-800/80 hover:bg-slate-700 text-slate-300">
+                    <i class="fa-solid fa-star text-gdYellow mr-1.5"></i>Featured
+                </button>
+                <button data-filter="game" class="filter-btn px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition bg-slate-800/80 hover:bg-slate-700 text-slate-300">
+                    <i class="fa-solid fa-gamepad text-gdGreen mr-1.5"></i>Game & Browser
+                </button>
+                <button data-filter="account" class="filter-btn px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition bg-slate-800/80 hover:bg-slate-700 text-slate-300">
+                    <i class="fa-solid fa-user-gear text-gdCyan mr-1.5"></i>Account & Stats
+                </button>
+                <button data-filter="community" class="filter-btn px-4 py-1.5 rounded-lg text-xs md:text-sm font-semibold transition bg-slate-800/80 hover:bg-slate-700 text-slate-300">
+                    <i class="fa-solid fa-users text-gdPink mr-1.5"></i>Community
+                </button>
+            </div>
+        </section>
+
+        <!-- Links Container -->
+        <main class="w-full space-y-8" id="links-container">
+
+            <!-- CATEGORY 1: FEATURED & DOWNLOADS -->
+            <section class="link-category-block space-y-3" data-category="popular">
+                <h2 class="text-xs uppercase font-extrabold text-slate-400 tracking-wider flex items-center gap-2 pl-1">
+                    <i class="fa-solid fa-fire text-gdYellow"></i> Featured & Quick Access
+                </h2>
+
+                <!-- Download Maxr3 GDPS -->
+                <div class="link-card glass-panel rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-gdGreen gd-glow-green"
+                     data-keywords="download game client android pc apk maxr3 installation" data-category="popular game">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-gdGreen/10 border border-gdGreen/30 text-gdGreen flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-download"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="font-bold text-slate-100 text-base md:text-lg">Download Maxr3 GDPS</h3>
+                                <span class="bg-gdGreen/20 text-gdGreen text-[10px] font-bold px-2 py-0.5 rounded-md border border-gdGreen/40">MUST HAVE</span>
+                            </div>
+                            <p class="text-xs md:text-sm text-slate-400">Get the full GDPS client files for Android & PC</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 self-end md:self-center shrink-0 w-full md:w-auto">
+                        <button class="copy-btn flex-1 md:flex-none px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition flex items-center justify-center gap-1.5" data-url="https://mr3gdps1938.ps.fhgdps.com/download.html">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                        <a href="https://mr3gdps1938.ps.fhgdps.com/download.html" target="_blank" rel="noopener noreferrer" class="flex-1 md:flex-none px-5 py-2 rounded-xl bg-gdGreen text-slate-950 font-bold text-xs md:text-sm hover:brightness-110 transition shadow-lg flex items-center justify-center gap-2">
+                            Download Game <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Demon List -->
+                <div class="link-card glass-panel rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-gdPink gd-glow-pink"
+                     data-keywords="demon list hard levels top hardest players rank demons maxr3gdpsdemonlist" data-category="popular game">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-gdPink/10 border border-gdPink/30 text-gdPink flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-[#fa2a85] fa-skull"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="font-bold text-slate-100 text-base md:text-lg">Demon List</h3>
+                                <span class="bg-gdPink/20 text-gdPink text-[10px] font-bold px-2 py-0.5 rounded-md border border-gdPink/40">TOP EXTREMES</span>
+                            </div>
+                            <p class="text-xs md:text-sm text-slate-400">Official ranking of the server's hardest demon levels</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 self-end md:self-center shrink-0 w-full md:w-auto">
+                        <button class="copy-btn flex-1 md:flex-none px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition flex items-center justify-center gap-1.5" data-url="https://maxr3gdpsdemonlist.pages.dev/">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                        <a href="https://maxr3gdpsdemonlist.pages.dev/" target="_blank" rel="noopener noreferrer" class="flex-1 md:flex-none px-5 py-2 rounded-xl bg-gdPink text-slate-950 font-bold text-xs md:text-sm hover:brightness-110 transition shadow-lg flex items-center justify-center gap-2">
+                            View Demon List <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Discord Server -->
+                <div class="link-card glass-panel rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-indigo-400"
+                     data-keywords="discord server chat community invite maxr3 dsc gg" data-category="popular community">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-brands fa-discord"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="font-bold text-slate-100 text-base md:text-lg">Discord Server</h3>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-[10px] font-bold px-2 py-0.5 rounded-md border border-indigo-500/40">COMMUNITY</span>
+                            </div>
+                            <p class="text-xs md:text-sm text-slate-400">Join our active Discord community to chat, share levels & get news</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 self-end md:self-center shrink-0 w-full md:w-auto">
+                        <button class="copy-btn flex-1 md:flex-none px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition flex items-center justify-center gap-1.5" data-url="https://dsc.gg/mr3gdps">
+                            <i class="fa-regular fa-copy"></i> Copy
+                        </button>
+                        <a href="https://dsc.gg/mr3gdps" target="_blank" rel="noopener noreferrer" class="flex-1 md:flex-none px-5 py-2 rounded-xl bg-indigo-600 text-white font-bold text-xs md:text-sm hover:bg-indigo-500 transition shadow-lg flex items-center justify-center gap-2">
+                            Join Discord <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- CATEGORY 2: GAMEPLAY & LEVEL BROWSER -->
+            <section class="link-category-block space-y-3" data-category="game">
+                <h2 class="text-xs uppercase font-extrabold text-slate-400 tracking-wider flex items-center gap-2 pl-1">
+                    <i class="fa-solid fa-gamepad text-gdGreen"></i> Gameplay & Level Browsing
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+                    <!-- Level Browser -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-gdCyan gd-glow-cyan"
+                         data-keywords="level browser web browser levels rate stars search online" data-category="game">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-gdCyan/10 border border-gdCyan/30 text-gdCyan flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-compass"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-100 text-base">Level Browser</h3>
+                                    <p class="text-xs text-slate-400">Browse published custom levels</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://mr3gdps1938.ps.fhgdps.com/browser">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://mr3gdps1938.ps.fhgdps.com/browser" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-gdCyan hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                Open Browser <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Search Levels -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-gdCyan gd-glow-cyan"
+                         data-keywords="search levels query find level song difficulty id creator" data-category="game">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-gdCyan/10 border border-gdCyan/30 text-gdCyan flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-magnifying-glass font-bold"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-100 text-base">Search Levels</h3>
+                                    <p class="text-xs text-slate-400">Find levels by name, ID, or difficulty</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://mr3gdps1938.ps.fhgdps.com/browser/search/">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://mr3gdps1938.ps.fhgdps.com/browser/search/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-gdCyan hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                Search Engine <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Level List Stats -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-gdYellow"
+                         data-keywords="level list stats levelslist php statistics database uploaded levels" data-category="game account">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-gdYellow/10 border border-gdYellow/30 text-gdYellow flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-list-check"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-100 text-base">Level List</h3>
+                                    <p class="text-xs text-slate-400">View complete server level index & stats</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://mr3gdps1938.ps.fhgdps.com/dashboard/stats/levelsList.php">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://mr3gdps1938.ps.fhgdps.com/dashboard/stats/levelsList.php" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-gdYellow hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                View Level Index <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- GDPS Switcher -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-gdPurple gd-glow-purple"
+                         data-keywords="gdps switcher server host fhgdps redirect connection main" data-category="game">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-gdPurple/10 border border-gdPurple/30 text-gdPurple flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-[#a020f0] fa-network-wired"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-100 text-base">GDPS Switcher</h3>
+                                    <p class="text-xs text-slate-400">Main host portal & connection config</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://mr3gdps1938.ps.fhgdps.com/">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://mr3gdps1938.ps.fhgdps.com/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-gdPurple hover:text-white font-semibold text-xs transition border border-slate-700">
+                                Server Host Home <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- GDPS Hub Listing -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-blue-400 md:col-span-2"
+                         data-keywords="gdps hub profile listing 5623 server database gdpshub" data-category="game community">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-100 text-base">GDPS Hub Listing</h3>
+                                <p class="text-xs text-slate-400">Official server listing and votes on GDPSHub (ID: 5623)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://gdpshub.com/gdps/5623">
+                                <i class="fa-regular fa-copy"></i> Copy Link
+                            </button>
+                            <a href="https://gdpshub.com/gdps/5623" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-blue-500 hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                View on GDPS Hub <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- CATEGORY 3: ACCOUNT & DASHBOARD -->
+            <section class="link-category-block space-y-3" data-category="account">
+                <h2 class="text-xs uppercase font-extrabold text-slate-400 tracking-wider flex items-center gap-2 pl-1">
+                    <i class="fa-solid fa-user-gear text-gdCyan"></i> Account & Dashboard
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+
+                    <!-- Dashboard -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-gdCyan"
+                         data-keywords="dashboard management panel account overview user control" data-category="account">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-gdCyan/10 border border-gdCyan/30 text-gdCyan flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-gauge-high"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-100 text-base">Dashboard</h3>
+                                <p class="text-xs text-slate-400">User panel overview</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://mr3gdps1938.ps.fhgdps.com/dashboard">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://mr3gdps1938.ps.fhgdps.com/dashboard" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-gdCyan hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                Dashboard <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Login -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-gdGreen"
+                         data-keywords="login account sign in auth credentials dashboard login.php" data-category="account">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-gdGreen/10 border border-gdGreen/30 text-gdGreen flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-right-to-bracket"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-100 text-base">Login</h3>
+                                <p class="text-xs text-slate-400">Sign in to your account</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://mr3gdps1938.ps.fhgdps.com/dashboard/login/login.php">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://mr3gdps1938.ps.fhgdps.com/dashboard/login/login.php" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-gdGreen hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                Sign In <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Register -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-gdYellow"
+                         data-keywords="register sign up create account new account register.php" data-category="account">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-gdYellow/10 border border-gdYellow/30 text-gdYellow flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-100 text-base">Register</h3>
+                                <p class="text-xs text-slate-400">Create a new account</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://mr3gdps1938.ps.fhgdps.com/dashboard/login/register.php">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://mr3gdps1938.ps.fhgdps.com/dashboard/login/register.php" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-gdYellow hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                Register <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- CATEGORY 4: COMMUNITY & MODERATION -->
+            <section class="link-category-block space-y-3" data-category="community">
+                <h2 class="text-xs uppercase font-extrabold text-slate-400 tracking-wider flex items-center gap-2 pl-1">
+                    <i class="fa-solid fa-shield-halved text-gdPink"></i> Staff & Moderation
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+
+                    <!-- Forum -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-violet-400"
+                         data-keywords="forum discourse community discussions feedback staff maxr3gdps forum" data-category="community">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/30 text-violet-400 flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-100 text-base">Official Forum</h3>
+                                <p class="text-xs text-slate-400">Discourse community forum</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://maxr3gdps-forum.discourse.group/">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://maxr3gdps-forum.discourse.group/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-violet-500 hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                Open Forum <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Moderator List -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-emerald-400"
+                         data-keywords="moderator list mods staff team admins modlist php" data-category="community">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-100 text-base">Moderator List</h3>
+                                <p class="text-xs text-slate-400">View active staff members</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://mr3gdps1938.ps.fhgdps.com/dashboard/stats/modList.php">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://mr3gdps1938.ps.fhgdps.com/dashboard/stats/modList.php" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-400 hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                Mod List <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Moderator Actions -->
+                    <div class="link-card glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 transition-all duration-300 hover:-translate-y-1 border-slate-700/60 hover:border-amber-400"
+                         data-keywords="moderator actions logs history rates bans modactionslist php staff activity" data-category="community">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-100 text-base">Moderator Actions</h3>
+                                <p class="text-xs text-slate-400">Public staff log history</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 pt-2 border-t border-slate-800/80">
+                            <button class="copy-btn px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs transition" data-url="https://mr3gdps1938.ps.fhgdps.com/dashboard/stats/modActionsList.php">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://mr3gdps1938.ps.fhgdps.com/dashboard/stats/modActionsList.php" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded-lg bg-slate-800 hover:bg-amber-400 hover:text-slate-950 font-semibold text-xs transition border border-slate-700">
+                                Staff Logs <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- No results box -->
+            <div id="no-results" class="hidden glass-panel rounded-2xl p-8 text-center space-y-3 border border-slate-800">
+                <i class="fa-solid fa-ghost text-4xl text-slate-500"></i>
+                <p class="text-slate-300 font-semibold">No matching links found</p>
+                <p class="text-xs text-slate-500">Try searching for keywords like "download", "login", or "demon list".</p>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full text-center text-xs text-slate-500 pt-6 pb-2 space-y-2 border-t border-slate-800/80">
+            <p>Maxr3 GDPS • Official Links Portal</p>
+            <p class="text-[11px] text-slate-600">Geometry Dash is a registered trademark of RobTop Games AB.</p>
+        </footer>
+
+    </div>
+
+    <!-- Toast Notification Message -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-panel bg-slate-900/95 border border-gdGreen/50 text-slate-100 px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-lg bg-gdGreen/20 text-gdGreen flex items-center justify-center">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+                <p class="text-xs font-bold text-gdGreen" id="toast-title">Link Copied!</p>
+                <p class="text-[11px] text-slate-400" id="toast-msg">URL copied to your clipboard.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Geometry particle canvas background
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // Floating GD blocks & particles
+        const particles = [];
+        const particleCount = 35;
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 18 + 6;
+                this.speedY = -(Math.random() * 0.8 + 0.2);
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.02;
+                this.opacity = Math.random() * 0.3 + 0.05;
+                const colors = ['#00F0FF', '#20E070', '#A020F0', '#FF2A85', '#FFD700'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.isCube = Math.random() > 0.4;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotSpeed;
+
+                if (this.y < -30 || this.x < -30 || this.x > width + 30) {
+                    this.reset();
+                    this.y = height + 20;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.globalAlpha = this.opacity;
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 1.5;
+
+                if (this.isCube) {
+                    ctx.strokeRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                    ctx.fillStyle = this.color;
+                    ctx.globalAlpha = this.opacity * 0.3;
+                    ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                } else {
+                    // Triangle spike shape
+                    ctx.beginPath();
+                    ctx.moveTo(0, -this.size / 2);
+                    ctx.lineTo(this.size / 2, this.size / 2);
+                    ctx.lineTo(-this.size / 2, this.size / 2);
+                    ctx.closePath();
+                    ctx.stroke();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateBg() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateBg);
+        }
+
+        window.onload = function() {
+            animateBg();
+        };
+
+        // Toast message notification function
+        let toastTimeout;
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-msg').innerText = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Copy link handler using iframe-compatible fallback
+        function copyToClipboard(text) {
+            const helper = document.getElementById('copy-helper');
+            helper.value = text;
+            helper.select();
+            helper.setSelectionRange(0, 99999);
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast('Link Copied!', 'URL copied to clipboard successfully.');
+                } else {
+                    showToast('Copy Failed', text);
+                }
+            } catch (err) {
+                showToast('Copy Error', text);
+            }
+        }
+
+        // Event delegation for copy buttons
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.copy-btn');
+            if (btn) {
+                const url = btn.getAttribute('data-url');
+                if (url) {
+                    copyToClipboard(url);
+                }
+            }
+        });
+
+        // Search & Category Filtering
+        const searchInput = document.getElementById('link-search');
+        const clearBtn = document.getElementById('clear-search');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const linkCards = document.querySelectorAll('.link-card');
+        const categoryBlocks = document.querySelectorAll('.link-category-block');
+        const noResults = document.getElementById('no-results');
+
+        let currentCategory = 'all';
+
+        function filterLinks() {
+            const query = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            if (query.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            categoryBlocks.forEach(block => {
+                let blockHasVisibleCard = false;
+
+                const cardsInBlock = block.querySelectorAll('.link-card');
+                cardsInBlock.forEach(card => {
+                    const keywords = card.getAttribute('data-keywords') || '';
+                    const categories = card.getAttribute('data-category') || '';
+                    const textContent = card.textContent.toLowerCase();
+
+                    const matchesSearch = query === '' || keywords.includes(query) || textContent.includes(query);
+                    const matchesCategory = currentCategory === 'all' || categories.includes(currentCategory);
+
+                    if (matchesSearch && matchesCategory) {
+                        card.classList.remove('hidden');
+                        blockHasVisibleCard = true;
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                if (blockHasVisibleCard) {
+                    block.classList.remove('hidden');
+                } else {
+                    block.classList.add('hidden');
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        searchInput.addEventListener('input', filterLinks);
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            filterLinks();
+            searchInput.focus();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-gdCyan', 'text-slate-950');
+                    b.classList.add('bg-slate-800/80', 'text-slate-300');
+                });
+
+                btn.classList.add('active', 'bg-gdCyan', 'text-slate-950');
+                btn.classList.remove('bg-slate-800/80', 'text-slate-300');
+
+                currentCategory = btn.getAttribute('data-filter');
+                filterLinks();
+            });
+        });
+    </script>
+</body>
+</html>
